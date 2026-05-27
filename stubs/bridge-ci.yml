@@ -1,0 +1,39 @@
+name: Bridge validate
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  bridge-validate:
+    name: TypeScript client is up to date
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Install PHP dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Validate TypeScript client
+        run: php artisan phptypes:validate
+
+      # Optional: fail if output files are missing from git
+      - name: Check generated files are committed
+        run: |
+          git diff --exit-code resources/js/api/ || \
+            (echo "Generated TypeScript files have changed. Run php artisan phptypes:generate and commit." && exit 1)
