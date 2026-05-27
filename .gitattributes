@@ -5,3 +5,4 @@
 /.github/          export-ignore
 /phpstan.neon      export-ignore
 /.php-cs-fixer.php export-ignore
+/stubs/		   export-ignore
