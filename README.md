@@ -1,6 +1,6 @@
-# phptypes/bridge-laravel
+# ielfran/phptypes-bridge-laravel
 
-Laravel integration for phptypes/bridge — Artisan commands, 
+Laravel integration for ielfran/phptypes-bridge — Artisan commands, 
 auto-discovery, and route scanning.
 
 ## Requirements
@@ -9,12 +9,12 @@ auto-discovery, and route scanning.
 
 ## Installation
 ```bash
-composer require phptypes/bridge phptypes/bridge-laravel
+composer require ielfran/phptypes-bridge ielfran/phptypes-bridge-laravel
 ```
 
 ## Setup
 ```bash
-php artisan phptypes:init     
+php artisan phptypes:init
 php artisan phptypes:generate
 ```
 
